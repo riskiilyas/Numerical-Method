@@ -1,3 +1,6 @@
+library(datasets)  # Load/unload base packages manually
+
+
 # wrapper around sprintf() and print()
 printf <- function(...) invisible(cat(sprintf(...)))
 print <- function(...) invisible(cat((...), "\n"))
@@ -12,27 +15,23 @@ f <- function(x) {
 # n: no. of iterations to perform
 secant <- function(f, xi_min1, xi, n) {
   trials <- c()
-  xCol <- c()
-  fxCol <- c()
+  x <- c()
+  fx <- c()
   for (i in 1:n) {
     printf("%03d | x = %.8f | f(x) = %.8f\n", i, xi, f(xi))
     trials[i] = i
-    xCol[i] = format(round(xi, 6), nsmall = 6)
-    fxCol[i] =  format(round(f(xi), 6), nsmall = 6)
+    x[i] = xi
+    fx[i] =  f(xi)
     x_plus1 <- xi - ((f(xi) * (xi_min1 - xi)) / (f(xi_min1) - f(xi)))
     xi_min1 <- xi
     xi <- x_plus1
-    
-    'afaasfsfae'
   }
   
-  datas = matrix(c(xCol,fxCol), ncol = 2, nrow = n)
-  colnames(datas) = c('x', 'F(x)')
-  rownames(datas) = c(trials)
+  #datas = matrix(c(xCol,fxCol), ncol = 2, nrow = n)
+  #colnames(datas) = c('x', 'F(x)')
+  #rownames(datas) = c(trials)
   
-  tablee = as.table(datas)
-
-  tablee
+  plot(fx, x)
 }
 
 secant(f, 0, 1, 10)
