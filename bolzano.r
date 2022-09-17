@@ -4,39 +4,42 @@ library(datasets)  # Load/unload base packages manually
 bolzano <- function(a, b, n, f) {
   if(f(a) * f(b) > 0) {
     return()
-  } else if(f(a) == 0) {
-    return(a)
-  } else if(f(b) == 0) {
-    return(b)
   }
   
-  c <- -1
+  xList <- c()
+  x <- -1
   fx <- c()
   
   for (i in 1:n) {
-    c <- (a+b)/2.0
-    fx[i] = c
+    x <- (a+b)/2.0
+    fx[i] <- format(round(f(x), 3), nsmall = 3)
+    xList[i] <- format(round(x, 3), nsmall = 3)
     
-    if(f(c) == 0) {
-      return(c)
+    if(f(x) == 0) {
+      break
     }
     
-    if(f(a) * f(c) < 0) {
-      b <- c
-    } else if(f(b) * f(c) < 0) {
-      a <- c
-    } else {
-      return()
+    if(f(a) * f(x) < 0) {
+      b <- x
+    } else if(f(b) * f(x) < 0) {
+      a <- x
     }
   }
   
+  iteration = c(1:n)
+  plot(iteration, fx)
   
-  plot(fx, c)
-  print(c)
+  data = matrix(c(xList,fx), n, 2)
+  colnames(data) <- c('x', 'f(x)')
+  rownames(data) <- c(1:n)
+  
+  table = as.table(data)
+  
+  table
 }
 
 f <- function(x) {
   return(x^3 - x^2 + 2)
 }
 
-bolzano(-200, 0, 30, f)
+bolzano(-10, 0, 30, f)
