@@ -46,4 +46,4 @@ f <- function(x) {
   return(exp(1)^(-x) - x)
 }
 
-tabulasi(0, 1, 3, f)
+tabulasi(0, 1, 10, f)

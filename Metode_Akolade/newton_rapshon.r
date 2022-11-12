@@ -1,12 +1,13 @@
 library(datasets)  # Load/unload base packages manually
 
+# The Result is the last x
 newtonRapson <- function(x, n, f, df) {
   xList <- c()
   fx <- c()
   for(i in 1:n) {
     xList[i] <- format(round(x, 3), nsmall = 3)
     fx[i] <- format(round(f(x), 3), nsmall = 3)
-    x <- x - (f(x) / df(x))
+    x <- f(x)
   }
   
   iteration = c(1:n)
@@ -30,5 +31,3 @@ df <- function(x) {
 }
 
 newtonRapson(0, 10, f, df)
-
-

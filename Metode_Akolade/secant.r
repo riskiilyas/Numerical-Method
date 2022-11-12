@@ -1,5 +1,6 @@
 library(datasets)  # Load/unload base packages manually
 
+# The Result is the last x+1
 secant <- function(xmin, x, n, f) {
   fx <- c()
   xminList <- c()
@@ -32,5 +33,5 @@ f <- function(x) {
   return(exp(1)^(-x) - x)
 }
 
-secant(0, 1, 10, f)
+secant(0, 1, 20, f)
 

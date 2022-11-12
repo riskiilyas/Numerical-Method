@@ -1,6 +1,7 @@
 library(datasets)  # Load/unload base packages manually
 
 # Change f(x) = 0 to x = f(x) first!
+# The Result is the last x
 iteration <- function(x, n, f){
   xList <- c()
   fx <- c()
@@ -26,4 +27,9 @@ f <- function(x) {
   return(exp(1)^(-x))
 }
 
-iteration(0.5, 10, f)
+# no.1
+fx <- function(x) {
+  return(x^3 + 6.6*x^2 - 29.05*x + 22.64) 
+}
+
+iteration(100, 10, fx)
